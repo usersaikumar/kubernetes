@@ -15,13 +15,11 @@ spec:
       labels:
         app:  mongo-express
     spec:
-      # initContainers:
-        # Init containers are exactly like regular containers, except:
-          # - Init containers always run to completion.
-          # - Each init container must complete successfully before the next one starts.
       containers:
-      - name:  mongo-express
-        image:  mongo-express
+      - name: mongo-express
+        image: mongo-express
+        ports:
+        - containerPort:  8081
         env:
         - name: ME_CONFIG_MONGODB_ADMINUSERNAME
           valueFrom:
@@ -38,6 +36,4 @@ spec:
             configMapKeyRef:
               name: mongodb-myconfigmap
               key: database_url
-        ports:
-        - containerPort:  8081
-          name:  mongo-express
+        
